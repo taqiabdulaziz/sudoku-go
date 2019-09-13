@@ -39,7 +39,7 @@ func solve(board [][]int) [][]int {
 				i -= 2
 				break
 			}
-			if checkVertical(col, val) {
+			if checkVertical(col, val) && checkHorizontal(board[row], val) {
 				board[row][col] = val
 				empty[i]["val"] = val
 				break
@@ -58,6 +58,15 @@ func checkVertical(col, val int) bool {
 			if j == col && board[i][j] == val {
 				return false
 			}
+		}
+	}
+	return true
+}
+
+func checkHorizontal(horizontalLine []int, val int) bool {
+	for i := 0; i < len(horizontalLine); i++ {
+		if horizontalLine[i] == val {
+			return false
 		}
 	}
 	return true
