@@ -39,7 +39,7 @@ func solve(board [][]int) [][]int {
 				i -= 2
 				break
 			}
-			if checkVertical(col, val) && checkHorizontal(board[row], val) {
+			if checkVertical(col, val) && checkHorizontal(board[row], val) && checkGrid(row, col, val) {
 				board[row][col] = val
 				empty[i]["val"] = val
 				break
@@ -67,6 +67,19 @@ func checkHorizontal(horizontalLine []int, val int) bool {
 	for i := 0; i < len(horizontalLine); i++ {
 		if horizontalLine[i] == val {
 			return false
+		}
+	}
+	return true
+}
+
+func checkGrid(startX, startY int, val int) bool {
+	x := (startX / 3) * 3
+	y := (startY / 3) * 3
+	for i := x; i <= (x + 2); i++ {
+		for j := y; j <= (y + 2); j++ {
+			if board[i][j] == val {
+				return false
+			}
 		}
 	}
 	return true
