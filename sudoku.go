@@ -27,10 +27,10 @@ func solve(board [][]int) [][]int {
 		}
 	}
 
-	for i, v := range empty {
-		row := v["row"]
-		col := v["col"]
-		val := v["val"]
+	for i := 0; i < len(empty); i++ {
+		row := empty[i]["row"]
+		col := empty[i]["col"]
+		val := empty[i]["val"]
 
 		for {
 			if val > 9 {
@@ -39,7 +39,7 @@ func solve(board [][]int) [][]int {
 				i -= 2
 				break
 			}
-			if checkVertical(col, val) && checkHorizontal(board[row], val) && checkGrid(row, col, val) {
+			if checkHorizontal(board[row], val) && checkVertical(col, val) && checkGrid(row, col, val) {
 				board[row][col] = val
 				empty[i]["val"] = val
 				break
